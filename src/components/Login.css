@@ -30,7 +30,7 @@ html, body {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 450px;
+  gap: 300px;
 }
 .nav-logo {
   height: 75px;

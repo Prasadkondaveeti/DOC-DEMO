@@ -8,7 +8,6 @@ import NeetPg from './components/NeetPg';
 import Dashboard from './components/Dashboard';
 import ProtectedRoute from "./components/ProtectedRoute";
 import Profile from './components/Profile';
-
 import AutoLogout from "./components/AutoLogout"; // ← ADDED
 
 function App() {
