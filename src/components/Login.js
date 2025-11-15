@@ -71,6 +71,7 @@ const Login = () => {
       );
 
       const data = await response.text();
+      console.log(data);
       const parsed = data ? JSON.parse(data) : null;
 
       const serviceResp = parsed?.serviceResponse;
