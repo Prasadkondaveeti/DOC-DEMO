@@ -1,16 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./Login.css";
 import { useNavigate } from "react-router-dom";
 
 const Otp = ({ mobile, otpToken, doctorId }) => {
-  const [otp, setOtp] = useState("");
+
+  /* ====== OTP STATE (4 BOXES) ====== */
+  const [otp, setOtp] = useState(["", "", "", ""]);
+  const otpRefs = useRef([]);
+
   const [error1, setError1] = useState("");
   const [error2, setError2] = useState("");
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
-  /* ✅ Image Slider */
+  /* ====== SLIDER ====== */
   const images = [
     "/slide1-28ef5fa6.png",
     "/slide2-07af1764.png",
@@ -25,13 +29,12 @@ const Otp = ({ mobile, otpToken, doctorId }) => {
     return () => clearInterval(timer);
   }, []);
 
-  /* ✅ Auto focus OTP input */
+  /* ====== AUTO FOCUS FIRST OTP BOX ====== */
   useEffect(() => {
-    const otpInput = document.getElementById("otp-input");
-    otpInput?.focus();
+    otpRefs.current[0]?.focus();
   }, []);
 
-  /* ✅ RESEND TIMER */
+  /* ====== RESEND TIMER ====== */
   const [timer, setTimer] = useState(25);
   const [canResend, setCanResend] = useState(false);
 
@@ -44,20 +47,34 @@ const Otp = ({ mobile, otpToken, doctorId }) => {
     return () => clearInterval(interval);
   }, [timer]);
 
-  /* ✅ RESEND HANDLER */
   const handleResend = (type) => {
     alert(`OTP resent via ${type.toUpperCase()}`);
     setTimer(25);
     setCanResend(false);
   };
 
-  /* ✅ VERIFY OTP HANDLER */
+  /* ====== HANDLE OTP DIGIT CHANGE ====== */
+  const handleOtpChange = (e, index) => {
+    const value = e.target.value.replace(/\D/g, ""); // allow only numbers
+
+    const newOtp = [...otp];
+    newOtp[index] = value;
+    setOtp(newOtp);
+
+    // Auto move forward
+    if (value && index < 3) otpRefs.current[index + 1].focus();
+
+    // Auto move backward on delete
+    if (!value && index > 0) otpRefs.current[index - 1].focus();
+  };
+
+  /* ====== VERIFY OTP ====== */
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError1("");
     setError2("");
 
-    const cleanedOtp = otp.trim();
+    const cleanedOtp = otp.join(""); // combine 4 boxes
 
     if (!cleanedOtp) {
       setError1("Enter OTP");
@@ -68,9 +85,6 @@ const Otp = ({ mobile, otpToken, doctorId }) => {
       setError1("OTP should be 4–6 digits");
       return;
     }
-console.log(mobile)
-    console.log(otpToken)
-    console.log(doctorId)
 
     if (!mobile || !otpToken || !doctorId) {
       setError2("Missing data. Cannot verify OTP.");
@@ -89,7 +103,7 @@ console.log(mobile)
             doctorId,
             countryCode: 91,
             mobileNo: Number(mobile),
-            otp: Number(cleanedOtp),  // ✅ Always send entered OTP
+            otp: Number(cleanedOtp),
             otpToken,
           }),
         }
@@ -98,27 +112,19 @@ console.log(mobile)
       if (!res.ok) throw new Error("Server error");
 
       const data = await res.json();
-      console.log("✅ Backend Response:", data);
       const status = data?.serviceResponse?.status;
       const message = data?.serviceResponse?.message;
       const doctorInfo = data?.doctor?.[0];
 
       if (status === "Y" && doctorInfo) {
-        const { sessionToken, doctorId, firstName, lastName,emailStr,mobileNo } = doctorInfo;
+        const { sessionToken, doctorId, firstName, lastName, emailStr, mobileNo } = doctorInfo;
 
         if (sessionToken) localStorage.setItem("sessionToken", sessionToken);
         if (doctorId) localStorage.setItem("doctorId", doctorId);
         if (firstName) localStorage.setItem("firstName", firstName);
         if (lastName) localStorage.setItem("lastName", lastName);
         if (emailStr) localStorage.setItem("emailStr", emailStr);
-        if (mobileNo) localStorage.setItem("mobileNo", mobileNo)
-
-
-        console.log(firstName);
-        console.log(lastName);
-        console.log(mobileNo)
-        console.log(doctorId)
-        console.log(emailStr)
+        if (mobileNo) localStorage.setItem("mobileNo", mobileNo);
 
         navigate("/dashboard", { replace: true });
       } else {
@@ -134,7 +140,7 @@ console.log(mobile)
   return (
     <div className="page-container">
 
-      {/* ✅ HEADER */}
+      {/* HEADER */}
       <header className="navbar">
         <img src="/header-logo.svg" className="nav-logo" alt="logo" />
 
@@ -146,19 +152,16 @@ console.log(mobile)
         </nav>
       </header>
 
-      {/* ✅ HERO SECTION (Same as LOGIN) */}
+      {/* HERO SECTION */}
       <section className="hero-section">
 
-        {/* ✅ LEFT SIDE (Same as login page) */}
+        {/* LEFT SIDE */}
         <div className="left-side">
           <div className="left-inner">
 
             <div className="dots">
               {images.map((_, i) => (
-                <span
-                  key={i}
-                  className={current === i ? "dot active" : "dot"}
-                ></span>
+                <span key={i} className={current === i ? "dot active" : "dot"}></span>
               ))}
             </div>
 
@@ -167,43 +170,42 @@ console.log(mobile)
               your medical journey
             </p>
 
-            <img
-              src={images[current]}
-              className="hero-illustration"
-              alt="illustration"
-            />
+            <img src={images[current]} className="hero-illustration" alt="illustration" />
           </div>
         </div>
 
-        {/* ✅ RIGHT SIDE (OTP CARD) */}
+        {/* RIGHT SIDE (OTP CARD) */}
         <div className="right-side">
           <div className="login-card">
-            <h3>Enter OTP</h3>
+            <h2>Verify Mobile Number </h2><br />
+            <p>A 4-digits Otp send to</p><br />
+            <p className="otp-phone-pill" >+91 - {mobile} <p onClick={() => navigate("/")}>🖋️</p></p><br /><br />
+            <p>Enter OTP</p>
 
             <form onSubmit={handleSubmit}>
 
-              {/* ✅ OTP INPUT */}
-              <input
-                id="otp-input"
-                type="tel"
-                inputMode="numeric"
-                placeholder="Enter 4 digit OTP"
-                maxLength="6"
-                value={otp}
-                onChange={(e) => setOtp(e.target.value)}
-                className="input1"
-              />
+              {/* ====== 4 BOX OTP INPUT UI ====== */}
+              <div className="otp-box-container">
+                {Array(4).fill(0).map((_, i) => (
+                  <input
+                    key={i}
+                    type="text"
+                    maxLength="1"
+                    className="otp-line-box"
+                    value={otp[i] || ""}
+                    onChange={(e) => handleOtpChange(e, i)}
+                    ref={(el) => (otpRefs.current[i] = el)}
+                  />
+                ))}
+              </div>
 
               {error1 && <p className="error-text">{error1}</p>}
               {error2 && <p className="error-text">{error2}</p>}
 
-              {/* ✅ RESEND AREA ABOVE VERIFY BUTTON */}
+              {/* RESEND AREA */}
               <div className="resend-area">
-
                 {!canResend ? (
-                  <p className="resend-timer">
-                    Didn’t receive OTP? Resend in {timer}s
-                  </p>
+                  <p className="resend-timer">Didn’t receive OTP? Resend in {timer}s</p>
                 ) : (
                   <>
                     <p className="resend-ready">Didn’t receive OTP? Resend now:</p>
@@ -229,7 +231,7 @@ console.log(mobile)
                 )}
               </div>
 
-              {/* ✅ VERIFY BUTTON */}
+              {/* VERIFY BUTTON */}
               <button disabled={loading}>
                 {loading ? "Verifying..." : "Verify OTP"}
               </button>

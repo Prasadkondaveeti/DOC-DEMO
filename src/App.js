@@ -26,9 +26,9 @@ function App() {
       <AutoLogout>
         <Routes>
           <Route path="/" element={<Login />} />
-          <Route path="/otp" element={<ProtectedRoute><Otp /></ProtectedRoute>} />
+          <Route path="/otp" element={<Otp />} />
           <Route path="/NeetSS" element={<NeetSS />} />
-          <Route path='/NeetPg' element={<NeetPg />} />
+          <Route path='/NeetPg' element={<ProtectedRoute><NeetPg /></ProtectedRoute>} />
           <Route path='/dashboard' element={<Dashboard />} />
           <Route path='/profile' element={<Profile />} />
         </Routes>
