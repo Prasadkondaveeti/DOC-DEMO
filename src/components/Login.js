@@ -83,6 +83,17 @@ const Login = () => {
       const dId = doctorInfo?.doctorId;
 
       if (status === 'Y') {
+
+        const now = Date.now();
+  const sessionValidityMs = 120000; // 2 minutes
+
+  localStorage.setItem("sessionToken", token);
+  localStorage.setItem("sessionStart", now);
+  localStorage.setItem("sessionExpiry", now + sessionValidityMs);
+
+  // Refresh cookie with new login timestamp
+  document.cookie = `session_start=${now}; path=/;`;
+  
         setMobile(trimmed);         // ✅ FIXED
         setOtpToken(token);
         setDoctorId(dId);
