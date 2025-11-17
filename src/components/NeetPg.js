@@ -99,7 +99,6 @@ function NeetPg() {
   ],
 };
  
- 
   const [errors, setErrors] = useState({});
   const [tableData, setTableData] = useState([]);
   const [apiMessage, setApiMessage] = useState("");
@@ -176,8 +175,6 @@ function NeetPg() {
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
-
-  // ⭐⭐⭐ FIXED submit handler
    const handleSubmit = async (e) => {
   e.preventDefault();
 
@@ -185,8 +182,8 @@ function NeetPg() {
     setApiMessage("");
     setTableData([]); // clear old results
 
-    const rows = await callPredictionApi(); // ⭐ FIXED: wait for API response
-    setTableData(rows); // ⭐ FIXED: display API data in table
+    const rows = await callPredictionApi(); 
+    setTableData(rows); 
   }
 };
 
@@ -303,15 +300,15 @@ function NeetPg() {
 
                 {/* SPECIALIZATION */}
                  <div className="form-field">
-  <label>Specialization*</label>
-  <div className="input-box">
-    <FaUniversity className="input-icon" />
-    <select
-      name="specialization"
-      value={formData.specialization}
-      onChange={handleChange}
-      required
-      disabled={!formData.course}     // ⬅ disables when course not selected
+                  <label>Specialization*</label>
+                  <div className="input-box">
+                    <FaUniversity className="input-icon" />
+                     <select
+                       name="specialization"
+                        value={formData.specialization}
+                        onChange={handleChange}
+                              required
+                              disabled={!formData.course}     // ⬅ disables when course not selected
     >
       <option value="">-- Select --</option>
  
@@ -334,15 +331,15 @@ function NeetPg() {
                     <select name="category" value={formData.category} onChange={handleChange}>
                       <option value="">Select Category</option>
                       <option value="EWS">EWS</option>
-<option value="EWS PwD">EWS PwD</option>
-<option value="OBC">OBC</option>
-<option value="OBC PwD">OBC PwD</option>
-<option value="Open">Open</option>
-<option value="Open PwD">Open PwD</option>
-<option value="SC">SC</option>
-<option value="SC PwD">SC PwD</option>
-<option value="ST">ST</option>
-<option value="ST PwD">ST PwD</option>
+                        <option value="EWS PwD">EWS PwD</option>
+                        <option value="OBC">OBC</option>
+                        <option value="OBC PwD">OBC PwD</option>
+                        <option value="Open">Open</option>
+                        <option value="Open PwD">Open PwD</option>
+                        <option value="SC">SC</option>
+                        <option value="SC PwD">SC PwD</option>
+                        <option value="ST">ST</option>
+                        <option value="ST PwD">ST PwD</option>
                     </select>
                   </div>
                   {errors.category && <p className="error-text">{errors.category}</p>}
