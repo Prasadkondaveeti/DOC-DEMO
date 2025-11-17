@@ -1,4 +1,5 @@
-/* MAIN WRAPPER */
+body,html{
+background-color: #fafafa;}
 .profile-wrapper {
   width: 100%;
   display: flex;
