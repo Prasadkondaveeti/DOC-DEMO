@@ -46,13 +46,14 @@ body, html {
 /* NAVBAR */
 .navbar {
   background: #edf2fd;
-  padding: 14px 40px;
+  /* padding: 14px 40px; */
   display: flex;
-  justify-content: space-between;   /* instead of manual 300px gaps */
+  justify-content: center;   /* instead of manual 300px gaps */
   align-items: center;
   flex-wrap: nowrap;
   width: 100%;
   box-sizing: border-box;
+  gap: 700px;
 }
 
 .nav-logo {
@@ -62,8 +63,9 @@ body, html {
   display: flex;
   /* padding: 5px 0; */
   justify-content: left;
+  align-items: left;
   /* padding-left: 24px; */
-  padding-right: 300px;
+  /* padding-right: 300px; */
 }
 
 .nav-right a {
@@ -85,14 +87,15 @@ body, html {
 
 /* HERO SECTION FIXED LAYOUT */
 .hero-section {
-  display: grid;
-  grid-template-columns: 1fr 420px;
+  display: flex;
+  /* grid-template-columns: 1fr 420px; */
+  justify-content: center;
   align-items: start;
-  gap: 40px;
+   gap:60px;
   padding: 40px 40px;
-  width: 100%;
-  max-width: 1400px;    /* keeps layout centered */
-  margin: 0 auto;       /* centers content horizontally */
+  /*width: 100%;
+  max-width: 1400px;    
+  margin: 0 auto;       */
 }
 
 
