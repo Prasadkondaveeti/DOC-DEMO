@@ -1,11 +1,29 @@
-/* RESET */
-html, body {
-    /* height: 100%; */
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    background-color: #7da2f3; /* your blue color */
-    overflow-x: hidden !important;;
+/* Make the entire background blue */
+body, html {
+  background: #78A6F0 !important;   /* your blue shade */
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+/* Ensure React root also fills full background */
+#root {
+  background: #78A6F0 !important;
+  min-height: 100vh;
+}
+
+/* Remove white backgrounds inside your page */
+.body, .body1, .seat-page {
+  background: transparent !important;
+}
+
+/* Form box should be white */
+.form-container {
+  background: white;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.1);
 }
 
 * {
@@ -18,6 +36,7 @@ html, body {
 /* PAGE BACKGROUND */
 .page-container {
   background: #7da2f3;
+  height: auto;
   width: 100%;
     /* ✅ FIX */
   font-family: "Inter", sans-serif;
