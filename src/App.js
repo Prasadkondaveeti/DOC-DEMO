@@ -25,7 +25,7 @@ function App() {
       {/* 🔥 AutoLogout wrapper added here */}
       <AutoLogout>
         <Routes>
-          <Route path="/" element={<ProtectedRoute><Login /></ProtectedRoute>} />
+          <Route path="/" element={<Login />} />
           <Route path="/otp" element={<ProtectedRoute><Otp /></ProtectedRoute>} />
           <Route path="/NeetSS" element={<ProtectedRoute><NeetSS /></ProtectedRoute>} />
           <Route path='/NeetPg' element={<ProtectedRoute><NeetPg /></ProtectedRoute>} />
