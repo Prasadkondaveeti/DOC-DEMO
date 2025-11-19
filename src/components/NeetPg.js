@@ -220,7 +220,7 @@ const statesList = [
   if (!formData.category)
     newErrors.category = "Please select category";
 // inside validate()
-console.log("validate() -> newErrors:", newErrors);
+// console.log("validate() -> newErrors:", newErrors);
 setErrors(newErrors);
   return Object.keys(newErrors).length === 0;
 };
