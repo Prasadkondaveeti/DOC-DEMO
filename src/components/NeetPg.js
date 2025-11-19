@@ -488,10 +488,11 @@ setErrors(newErrors);
                 <button type="button" className="submit-btns2" onClick={handle}>Go TO NEETSS</button>
               </div>
               {apiMessage && (
-                <p style={{ color: "black", fontWeight: "bold", marginTop: "10px", textAlign: "center", backgroundColor: "lightpink", padding: "10px" }}>
-                  {apiMessage}
-                </p>
-              )}
+  <div className="api-error-box">
+    {apiMessage}
+  </div>
+)}
+
                 </form>
                 {results.length === 0 && !apiMessage && (
               <div className="disclaimer">

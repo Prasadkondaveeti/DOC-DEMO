@@ -21,16 +21,16 @@ function App() {
 
   return (
     <Router>
-{/* <ProtectedRoute><NeetPg /></ProtectedRoute> */}
+
       {/* 🔥 AutoLogout wrapper added here */}
       <AutoLogout>
         <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/otp" element={<Otp />} />
-          <Route path="/NeetSS" element={<NeetSS />} />
-          <Route path='/NeetPg' element={<NeetPg />} />
-          <Route path='/dashboard' element={<Dashboard />} />
-          <Route path='/profile' element={<Profile />} />
+          <Route path="/" element={<ProtectedRoute><Login /></ProtectedRoute>} />
+          <Route path="/otp" element={<ProtectedRoute><Otp /></ProtectedRoute>} />
+          <Route path="/NeetSS" element={<ProtectedRoute><NeetSS /></ProtectedRoute>} />
+          <Route path='/NeetPg' element={<ProtectedRoute><NeetPg /></ProtectedRoute>} />
+          <Route path='/dashboard' element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+          <Route path='/profile' element={<ProtectedRoute><Profile /></ProtectedRoute>} />
         </Routes>
       </AutoLogout>
 
