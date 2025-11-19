@@ -1,112 +1,250 @@
-.body-container{
-    margin: 0%;
-    background-color: #7CA3E6;
-    color: white;
-    padding-Top: "100px";
+body {
+  background-color: #d2d4d7;
 }
 
-/* BODY BACKGROUND */
- 
-.body-bg {
-  width: 100%;
-  min-height: 100%;
-  background: #7ca5ea;
-  padding: 100px 0 60px 0;
-  box-sizing: border-box;
-}
- 
-/* CONTENT CARD (centered) */
-.body-content-card {
-  max-width: 900px;
-  width: 90%;
-  margin: 0 auto; /* center horizontally */
+.body1 {
+  background-color: #7ca3e6;
   display: flex;
-  flex-direction: column;
-  gap: 32px;
+  justify-content: center;
+  align-items: center;
 }
- 
-/* INFO CARD */
-.info-card {
-  background: #314097;
-  color: #ebedf9;
-  padding: 28px 30px;
-  border-radius: 16px;
+
+.seat-page {
+  background-color: #7ca3e6;
+  font-family: "Inter", sans-serif;
+}
+
+/* BLUE HEADER SECTION */
+.seat-header {
   width: 100%;
-  text-align: center;
+  padding-top: 95px;
+  padding-bottom: 0;
+  background-color: #7ca3e6;
+  color: white;
+  text-align: left;
+  font-family: "Inter", sans-serif;
+  margin: 0 auto;
 }
- 
-/* FORM CARD */
-.form-card {
-  background: #fff;
-  padding: 36px 40px;
-  border-radius: 16px;
+
+.seat-header p {
+  font-weight: 700;
+  font-size: 18px;
   width: 100%;
-  box-sizing: border-box;
+  max-width: 1100px;
+  display: block;
+  margin-bottom: 18px;
+  line-height: 1.5;
 }
- 
-/* FORM GRID */
+
+.seat-header ul {
+  margin-left: 25px;
+  margin-top: -5px;
+  margin-bottom: 15px;
+  max-width: 1100px;
+}
+
+.seat-header ul li {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.info-text {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+/* MAIN FORM CARD */
+.form-container {
+  width: 100%;
+  max-width: 1200px;
+  background: #ffffff;
+  padding-top: 0;
+  padding: 40px;
+  margin: 30px auto;
+  border-radius: 20px;
+  border: 1px solid #dcdcdc;
+  box-shadow: 0px 4px 12px rgba(0,0,0,0.08);
+}
+
+.form-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #2d3e5e;
+  text-align: left !important;
+  margin-bottom: 30px;
+  padding-left: 4px;
+}
+
+/* TWO COLUMN GRID (FINAL VERSION) */
 .form-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px 60px;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px 50px;
+}
+
+/* FORM FIELD */
+.form-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-field label {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+/* INPUT BOX */
+.input-box {
+  position: relative;
+}
+
+.input-icon {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+  color: #4e6ac0;
+}
+
+.input-box input,
+.input-box select {
   width: 100%;
-}
- 
-.form-grid input,
-.form-grid select {
-  padding: 12px 14px;
+  padding: 12px 12px 12px 40px;
   border-radius: 8px;
-  border: 1px solid #c9cfe0;
-  background: #f7f9fd;
-  width: 100%;
+  border: 1px solid #bfc8e6;
+  font-size: 15px;
+  outline: none;
 }
- 
-/* SUBMIT BUTTON */
-.submit-btn {
-  grid-column: span 2;
-  padding: 14px 0;
-  background: #6584e6;
-  color: #fff;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
+
+/* ERROR TEXT */
+.error-text {
+  color: red;
+  font-size: 13px;
+  margin-top: 4px;
+  font-weight: 600;
+  display: block;
 }
- 
+
+/* DISCLAIMER */
+.disclaimer {
+  margin-top: 25px;
+  font-size: 14px;
+}
+
+.disclaimer ul {
+  margin-left: 20px;
+}
+
 /* TABLE */
-.table-container {
-  width: 100%;
-  overflow-x: auto;
-  background: #fff;
-  padding: 24px;
-  border-radius: 16px;
-  box-sizing: border-box;
-}
- 
-table {
+.seat-table {
   width: 100%;
   border-collapse: collapse;
+  margin-top: 20px;
 }
- 
-th, td {
-  padding: 10px 14px;
-  border-bottom: 1px solid #e0e2ea;
+
+.seat-table th {
+  background: #5f7fd5;
+  color: #fff;
+  padding: 12px;
+  text-align: left;
+  font-size: 16px;
 }
- 
-th {
-  background: #ebf1fa;
-  color: #314097;
+
+.seat-table td {
+  padding: 12px;
+  border-bottom: 1px solid #dcdcdc;
+  font-size: 15px;
+}
+
+.seat-table tr:hover {
+  background-color: #f5f7ff;
+}
+
+/* BUTTON ROW (Inside Grid) */
+.form-grid > .btns1 {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 20px;
+  gap: 16px;
+  box-sizing: border-box;
+}
+
+/* BUTTONS */
+.submit-btns1,
+.submit-btns2 {
+  background: #5F7FD5;
+  color: #fff;
+  padding: 12px 28px;
+  font-size: 17px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
   font-weight: 600;
+  flex: 0 0 auto;
+  display: inline-block;
+  max-width: 320px;
+  white-space: nowrap;
 }
- 
-/* RESPONSIVE */
-@media(max-width: 768px) {
-  .form-grid {
-    grid-template-columns: 1fr;
+
+.submit-btns1:hover,
+.submit-btns2:hover {
+  background: #4e6ac0;
+}
+
+/* DISABLED */
+.submit-btns1[disabled] {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.form-grid > .btns1 .submit-btns1,
+.form-grid > .btns1 .submit-btns2 {
+  width: auto;
+}
+
+/* MOBILE RESPONSIVE */
+@media (max-width: 720px) {
+  .form-grid > .btns1 {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
   }
- 
-  .body-bg {
-    padding: 80px 10px 40px 10px;
+
+  .form-grid > .btns1 .submit-btns1,
+  .form-grid > .btns1 .submit-btns2 {
+    width: 100%;
+    max-width: none;
   }
 }
- 
- 
+
+/* ====== FORCE error text visible (paste at very end of NeetPg.css) ====== */
+
+/* 1) Ensure form-field remains column layout */
+.form-container .form-grid .form-field {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+/* 2) Ensure error text is visible and not collapsed/hidden */
+.form-container .form-grid .form-field .error-text {
+  display: block !important;
+  visibility: visible !important;
+  color: #d32f2f !important;        /* vivid red */
+  font-size: 13px !important;
+  margin-top: 6px !important;
+  line-height: 1.2 !important;
+  font-weight: 600 !important;
+}
+
+/* 3) In case some other rule makes p tags 0 height */
+.form-container .form-grid .form-field p.error-text::before {
+  content: "" !important;
+  display: inline-block !important;
+  width: 0 !important;
+  height: 0 !important;
+}
